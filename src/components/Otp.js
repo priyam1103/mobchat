@@ -4,15 +4,17 @@ import { Form, useFormik, FormikProvider } from "formik";
 import TextInput from "./TextInput";
 import axios from "axios";
 import * as Yup from "yup";
+import "./screen.css";
 import { addUser } from "../redux/user/action";
-import { navigate } from "@reach/router";
-let error = {};
+import { navigate, Link } from "@reach/router";
+import "./loader.css";
 const Otp = ({ location }) => {
   const [error, setError] = React.useState({});
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const [loading, setLoading] = React.useState(false);
   React.useEffect(() => {
-    if (user.user) {
+    if (user.user && location.state != null) {
     } else {
       navigate("/signup");
     }
@@ -31,7 +33,6 @@ const Otp = ({ location }) => {
           dispatch(addUser(res.data));
 
           navigate("/");
-          console.log(user);
         })
         .catch((err) => {
           if (err.response.status === 401) {
@@ -48,26 +49,44 @@ const Otp = ({ location }) => {
   });
 
   return (
-    <FormikProvider value={formik}>
-      <div>
-        Hi {location.state.auth.username} , please enter otp to continue...
-      </div>
-      <Form>
-        <TextInput
-          label="otp"
-          id="otp"
-          name="otp"
-          helpText="Enter otp"
-          type="text"
-          errorText={error.otp}
-        />
+    <div style={{ backgroundColor: "#3b3b38", height: window.innerHeight }}>
+      <div className="sty">
+        {!loading ? (
+          <>
+            {location.state ? (
+              <>
+                <FormikProvider value={formik}>
+                  <div>
+                    Hi {location.state.auth.username} , Please enter the otp
+                    sent to your email id.
+                  </div>
+                  <Form>
+                    <TextInput
+                      label="otp"
+                      id="otp"
+                      name="otp"
+                      helpText="Enter otp"
+                      type="text"
+                      errorText={error.otp}
+                    />
 
-        <div>
-          <button type="submit">Submit</button>
-          <button type="reset">Reset</button>
-        </div>
-      </Form>
-    </FormikProvider>
+                    <div>
+                      <button type="submit">Submit</button>
+                    </div>
+                  </Form>
+                </FormikProvider>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <Link to="/signup">Don't have an account ?</Link>
+                  <Link to="/signin">Having an account?</Link>
+                </div>
+              </>
+            ) : null}
+          </>
+        ) : (
+          <div className="loader"></div>
+        )}
+      </div>
+    </div>
   );
 };
 export default Otp;

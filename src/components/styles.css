@@ -167,6 +167,7 @@ label {
 
 input[type="email"],
 input[type="text"],
+input[type="password"],
 input[type="number"] {
   padding: 0.65rem 0.5rem;
   font-size: 1rem;
@@ -181,6 +182,7 @@ input[type="number"] {
 
 @media (prefers-color-scheme: dark) {
   input[type="email"],
+  input[type="password"],
   input[type="text"],
   input[type="number"] {
     background-color: var(--gray-700);
@@ -190,6 +192,7 @@ input[type="number"] {
 }
 
 input[type="email"]:hover,
+input[type="password"],
 input[type="text"]:hover,
 input[type="number"]:hover,
 textarea:hover {
@@ -200,6 +203,7 @@ textarea:hover {
   input[type="email"]:hover,
   input[type="text"]:hover,
   input[type="number"]:hover,
+  input[type="password"],
   textarea:hover {
     border: 2px solid var(--gray-600);
   }
@@ -607,6 +611,7 @@ abbr {
 
 .valid input[type="email"],
 .valid input[type="text"],
+.valid input[type="password"],
 .valid input[type="number"] {
   border-color: green;
 }
@@ -617,6 +622,7 @@ abbr {
 
 .invalid input[type="email"],
 .invalid input[type="text"],
+.invalid input[type="password"],
 .invalid input[type="number"] {
   border-color: red;
 }
@@ -669,6 +675,7 @@ input[type="reset"]:hover {
 
 input[type="email"],
 input[type="text"],
+input[type="password"],
 input[type="number"],
 textarea,
 select {

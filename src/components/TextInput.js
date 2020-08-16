@@ -1,14 +1,6 @@
 import React from "react";
-import {
-  Formik,
-  Form,
-  Field,
-  useFormik,
-  useField,
-  FormikProvider,
-} from "formik";
+import { useField } from "formik";
 import "./styles.css";
-import * as Yup from "yup";
 
 const TextInput = ({ label, helpText, errorText, ...props }) => {
   const [field, meta] = useField(props);
@@ -24,7 +16,9 @@ const TextInput = ({ label, helpText, errorText, ...props }) => {
       }`}
     >
       <div className="flex items-center space-between">
-        <label htmlFor={props.id}>{label}</label>{" "}
+        <label htmlFor={props.id} style={{ fontWeight: 10, color: " #ffcccc" }}>
+          {label}
+        </label>{" "}
         {showFeedback ? (
           <div
             id={`${props.id}-feedback`}
