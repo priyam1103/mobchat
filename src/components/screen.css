@@ -1,4 +1,4 @@
-@media (min-width: 0px) and (max-width: 900px) {
+@media (min-width: 0px) and (max-width: 1100px) {
   .sty {
     padding: 5%;
     max-width: max-width;
@@ -19,7 +19,7 @@
   }
 }
 
-@media (min-width: 900px) and (max-width: 2000px) {
+@media (min-width: 1100px) and (max-width: 2000px) {
   .sty {
     padding: 5%;
     max-width: 40%;

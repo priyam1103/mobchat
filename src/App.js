@@ -58,9 +58,7 @@ const App = () => {
         }
       );
 
-      newSocket.on("connect", () => {
-        alert("connected");
-      });
+      newSocket.on("connect", () => {});
 
       newSocket.on("disconnect", () => {});
       setSocket(newSocket);
