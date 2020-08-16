@@ -30,10 +30,10 @@ const SignUp = () => {
     onSubmit: (value) => {
       setLoading(true);
       axios
-        .post("http://localhost:3001/user/signup", value)
+        .post("https://mobchat-2020.herokuapp.com/user/signup", value)
         .then((res) => {
           dispatch(addUser(res.data));
-
+          console.log(res);
           navigate("/otp", {
             state: {
               auth: {

@@ -26,7 +26,7 @@ const Signin = () => {
     onSubmit: (value) => {
       setLoading(true);
       axios
-        .post("http://localhost:3001/user/signin", value)
+        .post("https://mobchat-2020.herokuapp.com/user/signin", value)
         .then((res) => {
           dispatch(addUser(res.data));
           if (!res.data.user_.verified) {

@@ -56,7 +56,7 @@ const Chatroom = ({ setUpSocket, newSocket }) => {
     const token = localStorage.getItem("mobchat_token");
     if (token) {
       axios
-        .get("http://localhost:3001/details/getUser", {
+        .get("https://mobchat-2020.herokuapp.com/details/getUser", {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {
@@ -64,6 +64,7 @@ const Chatroom = ({ setUpSocket, newSocket }) => {
           setTemp(res.data.users);
         })
         .catch((err) => {
+          localStorage.setItem("mobchat_token", null);
           navigate("/signin");
         });
     }

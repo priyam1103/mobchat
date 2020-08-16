@@ -25,7 +25,7 @@ const Otp = ({ location }) => {
     },
     onSubmit: (value) => {
       axios
-        .post("http://localhost:3001/user/verify", {
+        .post("https://mobchat-2020.herokuapp.com/user/verify", {
           otp: value.otp,
           emailId: location.state.auth.emailId,
         })

@@ -29,7 +29,7 @@ const App = () => {
 
     if (token) {
       axios
-        .get("http://localhost:3001/user/me", {
+        .get("https://mobchat-2020.herokuapp.com/user/me", {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {

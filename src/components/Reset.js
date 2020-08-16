@@ -52,7 +52,7 @@ const Reset = () => {
       setResetError();
       setLoading(true);
       axios
-        .post("http://localhost:3001/user/resetPassword", {
+        .post("https://mobchat-2020.herokuapp.com/user/resetPassword", {
           resetToken: params.token,
           password: value.password,
         })

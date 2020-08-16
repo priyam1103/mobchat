@@ -23,7 +23,7 @@ const ResetPassword = () => {
     onSubmit: (value) => {
       setLoading(true);
       axios
-        .post("http://localhost:3001/user/resetPassToken", value)
+        .post("https://mobchat-2020.herokuapp.com/user/resetPassToken", value)
         .then((res) => {
           if (res.status === 200) {
             setSuccess(true);
