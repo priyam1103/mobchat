@@ -69,6 +69,7 @@ const Chatroom = ({ setUpSocket, newSocket }) => {
         });
     }
   };
+  console.log(window.innerWidth);
   const handleLogout = () => {
     navigate("/signin");
     dispatch(removeUser());
@@ -93,7 +94,7 @@ const Chatroom = ({ setUpSocket, newSocket }) => {
   }, [search]);
   return (
     <>
-      {window.innerWidth < 400 ? (
+      {window.innerWidth < 500 ? (
         <div
           style={{
             backgroundColor: "#3b3b38",

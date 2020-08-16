@@ -31,7 +31,6 @@ const Message = ({ msg, time, date, flag }) => {
               }}
             >
               <span style={{ fontSize: "10px" }}>{time}</span>
-              <span style={{ fontSize: "10px" }}>{date}</span>
             </span>
           </p>
         </div>
@@ -61,7 +60,6 @@ const Message = ({ msg, time, date, flag }) => {
               }}
             >
               <span style={{ fontSize: "10px" }}>{time}</span>
-              <span style={{ fontSize: "10px" }}>{date}</span>
             </span>
             {msg}
           </p>
