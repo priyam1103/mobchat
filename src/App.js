@@ -50,7 +50,7 @@ const App = () => {
 
     if (token && !newwSocket) {
       newSocket = io(
-        "ws://mobchat-2020.herokuapp.com:53614/socket.io/?EIO=4&transport=websocket",
+        "ws://mobchat-2020.herokuapp.com/socket.io/?EIO=4&transport=websocket",
         {
           query: {
             token: localStorage.getItem("mobchat_token"),
