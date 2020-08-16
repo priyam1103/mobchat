@@ -49,11 +49,14 @@ const App = () => {
     const token = localStorage.getItem("mobchat_token");
 
     if (token && !newwSocket) {
-      newSocket = io("https://mobchat-2020.herokuapp.com", {
-        query: {
-          token: localStorage.getItem("mobchat_token"),
-        },
-      });
+      newSocket = io(
+        "ws://mobchat-2020.herokuapp.com:53614/socket.io/?EIO=4&transport=websocket",
+        {
+          query: {
+            token: localStorage.getItem("mobchat_token"),
+          },
+        }
+      );
 
       newSocket.on("connect", () => {
         alert("connected");
