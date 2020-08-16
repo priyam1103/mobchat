@@ -49,7 +49,7 @@ const App = () => {
     const token = localStorage.getItem("mobchat_token");
 
     if (token && !newwSocket) {
-      newSocket = io("http://localhost:3001", {
+      newSocket = io("https://mobchat-2020.herokuapp.com", {
         query: {
           token: localStorage.getItem("mobchat_token"),
         },
