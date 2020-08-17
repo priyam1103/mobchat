@@ -64,7 +64,7 @@ const Signin = () => {
       password: Yup.string().required(" Password required"),
     }),
   });
-  console.log(window.innerWidth);
+
   return (
     <>
       <div style={{ backgroundColor: "#3b3b38", height: window.innerHeight }}>
