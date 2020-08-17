@@ -32,9 +32,8 @@ const Chatroom = ({ setUpSocket, newSocket }) => {
       navigate("/signin");
     } else {
       setSocket(setUpSocket());
-      console.log(socket);
+
       handleRefresh();
-      setLoading(false);
     }
   }, []);
   useEffect(() => {
@@ -88,7 +87,7 @@ const Chatroom = ({ setUpSocket, newSocket }) => {
     } else {
       setSSearch(true);
       const fillteredData = temp.filter((find) =>
-        find.username.includes(search)
+        find.username.toLowerCase().includes(search)
       );
 
       setUsers(fillteredData);
@@ -259,16 +258,20 @@ const Chatroom = ({ setUpSocket, newSocket }) => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <span
-                    style={{
-                      color: "#ffcccc",
-                      fontWeight: 10,
-                      paddingTop: 10,
-                      paddingLeft: window.innerWidth / 22,
-                    }}
-                  >
-                    {user.user.username}'s chat room !!
-                  </span>
+                  {user ? (
+                    <span
+                      style={{
+                        color: "#ffcccc",
+                        fontWeight: 10,
+                        paddingTop: 10,
+                        paddingLeft: window.innerWidth / 22,
+                      }}
+                    >
+                      {user.user.username}'s chat room !!
+                    </span>
+                  ) : (
+                    <div className="lloader"></div>
+                  )}
 
                   <button
                     style={{
@@ -343,7 +346,7 @@ const Chatroom = ({ setUpSocket, newSocket }) => {
               </div>
             </div>
           ) : (
-            <div className="loader"></div>
+            <div className="loader" style={{ margin: "5%" }}></div>
           )}
         </>
       )}

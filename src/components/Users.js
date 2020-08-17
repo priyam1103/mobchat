@@ -10,7 +10,6 @@ const Users = ({ user, handleChat, newSocket, search }) => {
   React.useEffect(() => {
     setLoading(true);
     if (newSocket) {
-      setLoading(false);
       newSocket.emit("lastMessage", {
         currentUser: currentUser.user,
         user: user,
@@ -21,10 +20,12 @@ const Users = ({ user, handleChat, newSocket, search }) => {
             data._id === currentUser.user._id + user._id ||
             data._id === user._id + currentUser.user._id
           ) {
+            setLoading(false);
             setLastMessage(data.message[data.message.length - 1].message);
           }
         }
       });
+      setLoading(false);
       newSocket.on("chatMessage", (data) => {
         if (data.message.length) {
           if (

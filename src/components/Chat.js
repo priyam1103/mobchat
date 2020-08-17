@@ -8,7 +8,7 @@ import Message from "./Message";
 import Infobar from "./Infobar";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import "./loader.css";
 const Chat = ({ newSocket, reciever, user }) => {
   const [mssg, setMssg] = React.useState();
   const sender = useSelector((state) => state.user.user);
@@ -18,11 +18,12 @@ const Chat = ({ newSocket, reciever, user }) => {
   const [chatId2, setC2] = React.useState();
   //const chatId = sender._id + reciever._id;
   //const chatId2 = reciever._id + sender._id;
-
+  const [loading, setLoading] = React.useState(false);
   useEffect(() => {
     if (!newSocket) {
       navigate("/");
     } else {
+      setLoading(true);
       setC1(sender._id + reciever._id);
       setC2(reciever._id + sender._id);
       newSocket.on("chatMessage", (data) => {
@@ -37,6 +38,7 @@ const Chat = ({ newSocket, reciever, user }) => {
         "getChat",
         { sender: sender, recv: reciever },
         ({ chat }) => {
+          setLoading(false);
           setMessages(chat);
         }
       );
@@ -109,72 +111,82 @@ const Chat = ({ newSocket, reciever, user }) => {
   return (
     <div>
       <Infobar reciever={reciever.username} typing={typing} />
-      <div
-        style={{
-          height: window.innerHeight / 1.7,
-        }}
-      >
-        <ScrollToBottom className="chatscreen">
-          {Object.keys(messages).map((a) => (
-            <div
-              key={a}
-              style={{
-                backgroundColor: "#3b3b38",
-                justifyContent: "space-between",
-              }}
-            >
-              {messages[a].sender === user.user._id ? (
+      {!loading ? (
+        <>
+          <div
+            style={{
+              height: window.innerHeight / 1.7,
+            }}
+          >
+            <ScrollToBottom className="chatscreen">
+              {Object.keys(messages).map((a) => (
                 <div
+                  key={a}
                   style={{
-                    display: "flex",
-                    justifyContent: "flex-end",
-                    marginRight: "10px",
+                    backgroundColor: "#3b3b38",
+                    justifyContent: "space-between",
                   }}
                 >
-                  <Message
-                    msg={messages[a].message}
-                    time={messages[a].time}
-                    date={messages[a].date}
-                    flag={true}
-                  />
+                  {messages[a].sender === user.user._id ? (
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        marginRight: "10px",
+                      }}
+                    >
+                      <Message
+                        msg={messages[a].message}
+                        time={messages[a].time}
+                        date={messages[a].date}
+                        flag={true}
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "flex-start",
+                        marginLeft: "10px",
+                      }}
+                    >
+                      <Message
+                        msg={messages[a].message}
+                        time={messages[a].time}
+                        flag={false}
+                      />
+                    </div>
+                  )}
                 </div>
-              ) : (
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "flex-start",
-                    marginLeft: "10px",
-                  }}
-                >
-                  <Message
-                    msg={messages[a].message}
-                    time={messages[a].time}
-                    flag={false}
-                  />
-                </div>
-              )}
-            </div>
-          ))}
-        </ScrollToBottom>
-      </div>
-      <div
-        style={{ flexDirection: "row", display: "flex", paddingBottom: "10%" }}
-      >
-        <input
-          type="text"
-          placeholder="Type a message..."
-          value={mssg}
-          onChange={({ target: { value } }) => handleChange(value)}
-          onKeyPress={(event) =>
-            event.key === "Enter" ? handleSend(event) : null
-          }
-        />
-        <FontAwesomeIcon
-          onClick={handleSend}
-          icon={faPaperPlane}
-          style={{ fontSize: "50px", paddingTop: 10, cursor: "pointer" }}
-        />
-      </div>
+              ))}
+            </ScrollToBottom>
+          </div>
+          <div
+            style={{
+              flexDirection: "row",
+              display: "flex",
+              paddingBottom: "10%",
+            }}
+          >
+            <input
+              type="text"
+              placeholder="Type a message..."
+              value={mssg}
+              onChange={({ target: { value } }) => handleChange(value)}
+              onKeyPress={(event) =>
+                event.key === "Enter" ? handleSend(event) : null
+              }
+            />
+            <FontAwesomeIcon
+              onClick={handleSend}
+              icon={faPaperPlane}
+              style={{ fontSize: "50px", paddingTop: 10, cursor: "pointer" }}
+            />
+          </div>
+        </>
+      ) : (
+        <div className="llloader"></div>
+      )}
     </div>
   );
 };
