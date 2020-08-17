@@ -15,7 +15,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Chatroom = ({ setUpSocket, newSocket }) => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const [socket, setSocket] = React.useState(null);
+  const [socket, setSocket] = React.useState({});
   const [recv, setRecv] = React.useState({});
   const [chatbox, setChatBox] = React.useState(false);
   const [users, setUsers] = React.useState({});
@@ -32,15 +32,10 @@ const Chatroom = ({ setUpSocket, newSocket }) => {
       navigate("/signin");
     } else {
       setSocket(setUpSocket());
-
+      console.log(socket);
       handleRefresh();
       setLoading(false);
     }
-    return () => {
-      if (newSocket) {
-        newSocket.emit("leaveRoom", {});
-      }
-    };
   }, []);
   useEffect(() => {
     const cleanup = () => {
@@ -305,6 +300,7 @@ const Chatroom = ({ setUpSocket, newSocket }) => {
                       setSearch(e.target.value);
                     }}
                   ></input>
+
                   <div className="userscreen">
                     {user.user ? (
                       <>
