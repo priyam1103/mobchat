@@ -76,7 +76,7 @@ const App = () => {
           setUpSocket={setUpSocket}
           newSocket={newSocket}
         />
-        <Reset path="reset-password" />
+        <Reset path="reset-password/:token" />
         <ResetPassword path="resetPassword" />
         <Chat path="/chat" newSocket={newwSocket} />
         <Error path="/error" />
