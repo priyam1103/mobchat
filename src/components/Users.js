@@ -64,12 +64,12 @@ const Users = ({ user, handleChat, newSocket, search }) => {
           }}
           style={{
             paddingLeft: 10,
-            backgroundColor: "#e6e6e6",
+            backgroundColor: "#a8a8a3",
             cursor: "pointer",
             border: "10px",
-            borderRadius: 10,
-            borderWidth: 50,
-            borderColor: "red",
+            height:"70px"
+           
+          
           }}
         >
           <h3 style={{ fontSize: "20px", fontWeight: 15, color: "black" }}>
@@ -100,14 +100,14 @@ const Users = ({ user, handleChat, newSocket, search }) => {
                     paddingRight: 8,
                   }}
                 >
-                  {lastMessage ? lastMessage.substring(0, 10) : null}
+                  {lastMessage ? lastMessage.substring(0, 15) : null}
                 </p>
               )}
             </>
           ) : null}
         </div>
       ) : (
-        <div className="lloader"></div>
+     null
       )}
     </>
   );

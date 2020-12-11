@@ -23,7 +23,7 @@ const Reset = (props) => {
     async function checkToken(token) {
       setLoading(true);
       await axios
-        .get(`http://localhost:3000/user/resetPassVerify/${token}`)
+        .get(`https://mobchat-2020.herokuapp.com/user/resetPassVerify/${token}`)
         .then((res) => {
           if (res.status === 200) {
             setAllowReset(true);

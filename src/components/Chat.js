@@ -115,8 +115,9 @@ const Chat = ({ newSocket, reciever, user }) => {
         <>
           <div
             style={{
-              height: window.innerHeight / 1.7,
+              height: window.innerHeight / 1.6,
             }}
+            
           >
             <ScrollToBottom className="chatscreen">
               {Object.keys(messages).map((a) => (
@@ -161,6 +162,7 @@ const Chat = ({ newSocket, reciever, user }) => {
               ))}
             </ScrollToBottom>
           </div>
+        
           <div
             style={{
               flexDirection: "row",

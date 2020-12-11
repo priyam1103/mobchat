@@ -240,7 +240,8 @@ const Chatroom = ({ setUpSocket, newSocket }) => {
         </>
       ) : (
         <>
-          {!loading ? (
+            {!loading ? (
+              
             <div
               style={{
                 backgroundColor: "#3b3b38",
@@ -248,57 +249,29 @@ const Chatroom = ({ setUpSocket, newSocket }) => {
                 maxHeight: window.innerHeight,
               }}
             >
-              <div
-                style={{ paddingTop: window.innerHeight / 55, paddingLeft: 20 }}
-              >
-                <div
-                  style={{
-                    paddingBottom: 20,
-                    display: "flex",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  {user ? (
-                    <span
-                      style={{
-                        color: "#ffcccc",
-                        fontWeight: 10,
-                        paddingTop: 10,
-                        paddingLeft: window.innerWidth / 22,
-                      }}
-                    >
-                      {user.user.username}'s chat room !!
-                    </span>
-                  ) : (
-                    <div className="lloader"></div>
-                  )}
-
-                  <button
-                    style={{
-                      marginRight: window.innerWidth / 15,
-                      backgroundColor: "#e6e6e6",
-                      borderRadius: 10,
-                      padding: 10,
-                    }}
-                    onClick={handleLogout}
-                  >
-                    logout
-                  </button>
-                </div>
-              </div>
+           
               <div
                 style={{
                   display: "flex",
                   flexDirection: "row",
-                  justifyContent: "space-between",
+                    
                   height: window.innerHeight,
-                  overflow: "hidden",
-                  paddingLeft: window.innerWidth / 20,
+                    
+              
+                
                 }}
               >
-                <div>
+                  <div style={{ width: "25%" }}>
+                    {user && (
+                        <div style={{margin:0,padding:0,display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
+                        <p style={{ padding: 0, margin: "3px", fontSize: 20 }}>Logged in as <span style={{ color: "#ff8080" }}>{user.user.username}</span></p>
+                        <p style={{ padding: 0, margin: "3px", fontSize: 15,textDecoration:"underline",cursor:"pointer" }} onClick={handleLogout}>Logout</p>
+                      </div>
+                    )}
+                  
                   <input
-                    type="text"
+                      type="text"
+                      placeholder="Search for user"
                     onChange={(e) => {
                       setSearch(e.target.value);
                     }}
@@ -326,14 +299,14 @@ const Chatroom = ({ setUpSocket, newSocket }) => {
                     ) : null}
                   </div>
                 </div>
-                <div
+                < div
                   style={{
                     width: "70%",
-                    marginRight: "5%",
+                    marginLeft: "3%",
                   }}
                 >
                   {chatbox ? (
-                    <div>
+                    <div className="dj-hei">
                       <Chat
                         sender={user.user}
                         reciever={recv}
